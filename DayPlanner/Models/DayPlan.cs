@@ -23,7 +23,7 @@ namespace DayPlanner.Models
         {
             get
             {
-                return (StartTime - EndTime).TotalMinutes;
+                return (EndTime - StartTime).TotalMinutes;
             }
         }
 
