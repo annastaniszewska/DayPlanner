@@ -1,4 +1,6 @@
+using DayPlanner.Helpers;
 using DayPlanner.Models;
+using DayPlanner.VueCoreConnection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +25,7 @@ namespace DayPlanner
             services.AddDbContext<ApplicationDbContext>(opt => 
                 opt.UseInMemoryDatabase("DayPlanner"));
             services.AddControllers();
+            services.AddSpaStaticFiles(options => options.RootPath = $"{DirectoryHelper.ProjectRoot()}DayPlanner.UI\\day-planner\\dist");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +45,16 @@ namespace DayPlanner
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSpaStaticFiles();
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = $"{DirectoryHelper.ProjectRoot()}DayPlanner.UI\\day-planner";
+                if (env.IsDevelopment())
+                {
+                    spa.UseVueDevelopmentServer();
+                }
             });
         }
     }
