@@ -15,7 +15,7 @@ namespace DayPlanner.VueCoreConnection
 {
     public static class Connection
     {
-        public static int Port { get; } = 8081;
+        public static int Port { get; } = 8080;
         public static Uri DevelopmentServerEndpoint { get; } = new Uri($"http://localhost:{Port}");
 
         public static TimeSpan Timeout { get; } = TimeSpan.FromSeconds(60);
