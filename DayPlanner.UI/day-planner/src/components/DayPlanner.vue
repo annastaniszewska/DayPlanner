@@ -48,11 +48,7 @@ export default {
         },
         postDayTimeRange: function(dayPlanTimeRange) {
             axios
-            .post('https://localhost:44399/api/DayPlans', 
-                dayPlanTimeRange,
-            {
-                'Content-type': 'application/json'
-            })
+            .post('/api/DayPlans', dayPlanTimeRange)
             .then(response => 
                 this.id = response.data.id)
             .catch(e => {
@@ -61,7 +57,7 @@ export default {
         },
         getDayPlan: function() {
             axios
-            .get(`https://localhost:44399/api/DayPlans/${this.id}`)
+            .get(`/api/DayPlans/${this.id}`)
             .then(response => {
                 this.startTime = response.data.startTime,
                 this.endTime = response.data.endTime
